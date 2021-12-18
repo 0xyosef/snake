@@ -75,9 +75,11 @@ public class GamePanel extends JPanel implements ActionListener {
                 }
             }
             g.setColor(Color.red);
-            g.setFont(new Font("Ink free", Font.BOLD, 40));
+            g.setFont(new Font("Ink free", Font.BOLD, 25));
             FontMetrics metrics = getFontMetrics(getFont());
-            g.drawString("Score:" + applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score:" + applesEaten)) / 2, g.getFont().getSize());
+            g.drawString("Score: " + applesEaten,
+                    (SCREEN_WIDTH - metrics.stringWidth("Score: " + applesEaten)) / 2,
+                    SCREEN_HEIGHT /  metrics.getHeight());
         } else {
             GameOver(g);
         }
@@ -124,40 +126,40 @@ public class GamePanel extends JPanel implements ActionListener {
             if ((x[0] == x[i]) && (y[0] == y[i])) {
                 running = false;
             }
-            //checks if head touches left border
-            if (x[0] < 0) {
-                running = false;
-            }
-            //checks if head touches Right border
-            if (x[0] > SCREEN_WIDTH) {
-                running = false;
-            }
-            //checks if head touches top border
-            if (y[0] < 0) {
-                running = false;
-            }
-            //checks if head touches bottom border
-            if (y[0] > SCREEN_HEIGHT) {
-                running = false;
-            }
-            if (!running) {
-                timer.stop();
-            }
-
+        }
+        //checks if head touches left border
+        if (x[0] < 0) {
+            running = false;
+        }
+        //checks if head touches Right border
+        if (x[0] > SCREEN_WIDTH) {
+            running = false;
+        }
+        //checks if head touches top border
+        if (y[0] < 0) {
+            running = false;
+        }
+        //checks if head touches bottom border
+        if (y[0] > SCREEN_HEIGHT) {
+            running = false;
+        }
+        if (!running) {
+            timer.stop();
         }
     }
 
     public void GameOver(Graphics g) {
-        //score
-        g.setColor(Color.red);
-        g.setFont(new Font("Ink free", Font.BOLD, 40));
-        FontMetrics metrics1 = getFontMetrics(getFont());
-        g.drawString("Score:" + applesEaten, (SCREEN_WIDTH - metrics1.stringWidth("Score:" + applesEaten)) / 2, g.getFont().getSize());
-        //Game over text
-        g.setColor(Color.red);
-        g.setFont(new Font("Ink free", Font.BOLD, 75));
-        FontMetrics metrics2 = getFontMetrics(getFont());
-        g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over")) / 2, SCREEN_HEIGHT / 2);
+        // Draw the game over text
+        g.setColor(Color.RED);
+        g.setFont(new Font("Ink Free", Font.BOLD, 75));
+        FontMetrics fm = getFontMetrics(g.getFont());
+        g.drawString("Game Over", (SCREEN_WIDTH - fm.stringWidth("Game Over")) / 2, SCREEN_HEIGHT / 2);
+        // Draw the score
+        g.setFont(new Font("Ink Free", Font.BOLD, 25));
+        fm = getFontMetrics(g.getFont());
+        g.drawString("Score: " + applesEaten,
+                (SCREEN_WIDTH - fm.stringWidth("Score: " + applesEaten)) / 2,
+                SCREEN_HEIGHT /  fm.getHeight());
 
     }
 
