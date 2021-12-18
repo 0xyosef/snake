@@ -202,7 +202,24 @@ public class GamePanel extends JPanel implements ActionListener {
                     }
                     break;
             }
+            if (!running && e.getKeyCode() == KeyEvent.VK_SPACE) {
+                // Rest game
+                rest();
+                // start the game
+                startGame();
+            }
         }
+    }
+
+    private void rest() {
+        for (int i = 0; i < x.length; i++) {
+            x[i] = 0;
+            y[i] = 0;
+        }
+         bodyParts = 6;
+        applesEaten = 0;
+         direction = 'R';
+
 
     }
 }
